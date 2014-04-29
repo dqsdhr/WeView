@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">WeView</string>
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="splash">splash</string>
+    <string name="title_activity_app">AppActivity</string>
+    <string name="imageView_title">title</string>
+    <string name="cemara1">cemara1</string>
+    <string name="cemara1_path">http://221.122.105.51:8888/hls/camera1.m3u8</string>
+
+</resources>
