@@ -1,5 +1,8 @@
 package com.wangbo.weview;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Fragment;
@@ -26,7 +29,7 @@ public class AppActivity extends Activity {
 	}
 
 	/**
-	 * 在运行状态保存需要夸activity和fragment的基础数据
+	 * 在运行状态保存需要跨activity和fragment的基础数据
 	 * 
 	 * @param savedInstanceState
 	 */
@@ -58,28 +61,43 @@ public class AppActivity extends Activity {
 
 	@SuppressLint("ValidFragment")
 	public static class VideoFragment extends Fragment {
-
+		MediaController mediaController;
 		public VideoFragment() {
 
 		}
 
-		MediaController mediaController;
+		public void startPlay(final VideoView videoView) {
+			TimerTask task = new TimerTask() {
+
+				@Override
+				public void run() {
+					videoView.start();
+				}
+			};
+
+			Timer timer = new Timer();
+			timer.schedule(task, 1000);
+		}
+
+
 		@Override
 		public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 			View rootView = inflater.inflate(R.layout.fragment_app, container, false);
 			VideoView videoView_cemara1 = (VideoView) rootView.findViewById(R.id.videoView_cemara1);
 
 			// 创建MediaController对象
-			// mediaController = new MediaController(getActivity());
+			mediaController = new MediaController(getActivity());
 			String cemaraOnePath = this.getString(R.string.cemara1_path);
 			Uri cemaraOneUri = Uri.parse(cemaraOnePath);
 			videoView_cemara1.setVideoURI(cemaraOneUri);
-			// videoView_cemara1.setMediaController(mediaController);
-			// mediaController.setMediaPlayer(videoView_cemara1);
+			videoView_cemara1.setMediaController(mediaController);
+			mediaController.setMediaPlayer(videoView_cemara1);
+			videoView_cemara1.start();
 			videoView_cemara1.requestFocus();
-			videoView_cemara1.start();
-			videoView_cemara1.stopPlayback();
-			videoView_cemara1.start();
+
+			// Intent intent = new Intent(Intent.ACTION_VIEW);
+			// intent.setDataAndType(cemaraOneUri, "audio/x-mpegurl");
+			// startActivity(intent);
 			return rootView;
 		}
 	}

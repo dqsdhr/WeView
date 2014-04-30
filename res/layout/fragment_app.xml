@@ -11,18 +11,17 @@
         android:contentDescription="@string/imageView_title"
         android:paddingTop="2dp"
         android:src="@drawable/logo_bj" />
-	
-    <TextView 
+
+    <TextView
         android:id="@+id/textView_cemara1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/cemara1"/>
-    
+        android:text="@string/cemara1" />
+
     <VideoView
         android:id="@+id/videoView_cemara1"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:padding="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content"
         android:paddingTop="2dp" />
 
 </LinearLayout>
